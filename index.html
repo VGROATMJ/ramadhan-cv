@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramadhan Tri Atmojo — AI Student, IPB University</title>
+<meta name="description" content="Portfolio & CV Ramadhan Tri Atmojo, pendiri PT Vigaro Atmajaya (rencana), mahasiswa Kecerdasan Buatan IPB University. AI, data, robotika, IoT, dan web development.">
+<meta name="theme-color" content="#040A18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- BOOT SEQUENCE -->
+<div id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <pre id="bootLog"></pre>
+    <div class="boot-bar"><i id="bootFill"></i></div>
+  </div>
+</div>
+
+<div id="wipe" aria-hidden="true"><span id="wipeText"></span></div>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="glow" id="glow" aria-hidden="true"></div>
+<div class="progress"><i id="progress"></i></div>
+
+<header class="nav" id="nav">
+  <a href="#home" class="brand" aria-label="Beranda">
+    <span class="brand-mark">RTA</span>
+  </a>
+  <nav class="links" id="links">
+    <a href="#about" data-i18n="nav_about">Tentang</a>
+    <a href="#skills" data-i18n="nav_skills">Skill</a>
+    <a href="#projects" data-i18n="nav_projects">Proyek</a>
+    <a href="#company" data-i18n="nav_company">Perusahaan</a>
+    <a href="#education" data-i18n="nav_edu">Pendidikan</a>
+    <a href="#terminal" data-i18n="nav_term">Terminal</a>
+    <a href="#contact" data-i18n="nav_contact">Kontak</a>
+  </nav>
+  <div class="nav-right">
+    <button class="lang" id="lang" aria-label="Ganti bahasa"><span class="on">ID</span><span>EN</span></button>
+    <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HOME -->
+<div class="page active" id="home">
+<section class="hero">
+  <div class="hero-copy">
+    <p class="status"><span class="pulse"></span><span data-i18n="status">Mahasiswa AI di IPB University</span></p>
+    <h1 class="name" aria-label="Ramadhan Tri Atmojo">
+      <span class="glitch" data-text="Ramadhan">Ramadhan</span>
+      <span class="glitch" data-text="Tri Atmojo">Tri Atmojo</span>
+    </h1>
+    <p class="typed-line"><span class="prompt">&gt;</span> <span id="typed"></span><span class="caret"></span></p>
+    <p class="lead" data-i18n="hero_lead">Aku belajar kecerdasan buatan sambil membuat sesuatu: dari model prediksi dan robot ESP32 sampai perangkat suara pintar dan website yang benar-benar online.</p>
+    <div class="cta">
+      <a href="#projects" class="btn primary" data-i18n="cta_projects">Lihat proyek</a>
+      <a href="#contact" class="btn ghost" data-i18n="cta_contact">Hubungi aku</a>
+    </div>
+    <a href="#company" class="venture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 9l4 7 4-7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-i18n="vent">Pendiri PT Vigaro Atmajaya (dalam perencanaan)</span></a>
+    <ul class="stats">
+      <li><b data-count="4">0</b><span data-i18n="stat_proj">proyek unggulan</span></li>
+      <li><b data-count="4">0</b><span data-i18n="stat_dom">bidang: AI, robotika, IoT, web</span></li>
+      <li><b data-count="7">0</b><span data-i18n="stat_int">area yang kupelajari</span></li>
+    </ul>
+  </div>
+
+  <div class="hero-photo">
+    <div class="hud" id="hud">
+      <svg class="ring r1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="none" stroke-dasharray="2 10"/></svg>
+      <svg class="ring r2" viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke-dasharray="40 18 6 18"/></svg>
+      <div class="frame">
+        <img src="assets/hero.jpg" alt="Ramadhan Tri Atmojo berjas almamater IPB di depan Gedung Andi Hakim Nasoetion" width="900" height="1600">
+        <span class="scan"></span>
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="tag t1"><i></i>face.detect &nbsp;ok</div>
+        <div class="tag t2"><i></i>IPB University</div>
+      </div>
+      <div class="chip c1">ESP32</div>
+      <div class="chip c2">ML</div>
+      <div class="chip c3">IoT</div>
+      <div class="chip c4">&lt;/&gt;</div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-hint" aria-label="Scroll"><i></i></a>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="marquee"></div>
+</div>
+
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="about_h">Orang di balik kodenya</h2>
+    <p class="sub" data-i18n="about_sub">AI student, builder, technology enthusiast.</p>
+  </div>
+  <div class="about">
+    <div class="about-photo">
+      <img src="assets/point.jpg" alt="Ramadhan menunjuk ke kamera di halaman kampus IPB" loading="lazy">
+      <div class="photo-label"><span class="blink"></span> online</div>
+    </div>
+    <div class="about-text">
+      <p data-i18n="about_p1">Aku Ramadhan Tri Atmojo, mahasiswa Kecerdasan Buatan di IPB University, Sekolah Sains Data, Matematika dan Ilmu Komputer. Aku tertarik pada AI, data, robotika, IoT, dan pengembangan software.</p>
+      <p data-i18n="about_p2">Aku paling senang mengubah ide jadi teknologi yang bisa dipakai lewat proyek langsung: sistem machine learning, robot cerdas, perangkat berbasis AI, sampai aplikasi web.</p>
+      <div class="interest" id="interest"></div>
+      <div class="code-card">
+<pre><span class="c-k">const</span> <span class="c-v">ramadhan</span> = {
+  <span class="c-p">campus</span>: <span class="c-s">"IPB University"</span>,
+  <span class="c-p">major</span>:  <span class="c-s">"Artificial Intelligence"</span>,
+  <span class="c-p">mode</span>:   <span class="c-s">"learn → build → ship"</span>,
+  <span class="c-p">building</span>: [<span class="c-s">"ML"</span>, <span class="c-s">"robots"</span>, <span class="c-s">"IoT"</span>, <span class="c-s">"web"</span>]
+};</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="skills_h">Tumpukan teknologiku</h2>
+    <p class="sub" data-i18n="skills_sub">Arahkan kursor ke orbit, atau lihat daftarnya di sebelah.</p>
+  </div>
+  <div class="skills">
+    <div class="orbit" id="orbit" aria-hidden="true">
+      <div class="core"><span>AI</span></div>
+    </div>
+    <div class="skill-groups">
+      <article class="sg">
+        <h3>Artificial Intelligence &amp; Data</h3>
+        <ul><li>Machine Learning</li><li>Data preprocessing</li><li>Exploratory Data Analysis</li><li>Feature engineering</li><li>Model evaluation</li><li data-i18n="sk_deploy">Konsep AI &amp; deployment</li></ul>
+      </article>
+      <article class="sg">
+        <h3>Robotics &amp; Embedded</h3>
+        <ul><li>ESP32</li><li>Arduino</li><li>Motor control</li><li>Servo</li><li>Mecanum robot</li><li>PS3 controller</li><li data-i18n="sk_sensor">Sensor &amp; aktuator</li></ul>
+      </article>
+      <article class="sg">
+        <h3>IoT &amp; Smart Device</h3>
+        <ul><li>Wi-Fi</li><li>Relay / smart home</li><li>Voice input</li><li data-i18n="sk_cloud">Layanan AI cloud</li></ul>
+      </article>
+      <article class="sg">
+        <h3>Web Development</h3>
+        <ul><li>HTML / CSS / JavaScript</li><li>Responsive UI</li><li>Multi-page website</li><li>GitHub</li><li>Vercel</li><li data-i18n="sk_domain">Domain &amp; hosting</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="proj_h">Hal-hal yang sudah kubangun</h2>
+    <p class="sub" data-i18n="proj_sub">Empat proyek, empat sisi teknologi.</p>
+  </div>
+  <div class="projects">
+
+    <article class="card tilt">
+      <div class="viz viz-chart">
+        <svg viewBox="0 0 320 150" preserveAspectRatio="none">
+          <g class="gridl"><path d="M0 30H320M0 75H320M0 120H320"/></g>
+          <path class="area" d="M10 118 C40 110 60 90 90 96 S140 60 170 66 S215 40 240 44 L240 150 L10 150Z"/>
+          <path class="line" d="M10 118 C40 110 60 90 90 96 S140 60 170 66 S215 40 240 44"/>
+          <path class="pred" d="M240 44 C262 38 285 30 310 22"/>
+          <circle class="dot" cx="240" cy="44" r="4"/>
+          <circle class="dot2" cx="310" cy="22" r="4"/>
+        </svg>
+        <span class="viz-tag">prediksi_produksi.fit()</span>
+      </div>
+      <div class="card-body">
+        <p class="cat">AI &amp; Machine Learning</p>
+        <h3>Lacta-Predict</h3>
+        <p data-i18n="p1_desc">Sistem prediksi produksi susu sapi perah berbasis data tabular. Mencakup preprocessing, EDA, feature engineering, dan evaluasi model.</p>
+        <ul class="tags"><li>Tabular data</li><li>EDA</li><li>Feature engineering</li><li>Model evaluation</li></ul>
+      </div>
+    </article>
+
+    <article class="card tilt">
+      <div class="viz viz-robot" id="robotViz">
+        <span class="viz-tag">mecanum.drive(x, y, rot)</span>
+      </div>
+      <div class="card-body">
+        <p class="cat">Robotics &amp; Embedded System</p>
+        <h3>ESP32 Mecanum Robot</h3>
+        <p data-i18n="p2_desc">Konsep robot transporter beroda mecanum berbasis ESP32, dengan beberapa motor, servo, gripper, dan sistem lift. Dikendalikan lewat PS3 controller.</p>
+        <ul class="tags"><li>ESP32</li><li>Motor control</li><li>Servo</li><li>PS3 controller</li></ul>
+      </div>
+    </article>
+
+    <article class="card tilt">
+      <div class="viz viz-voice">
+        <div class="wave" id="wave"></div>
+        <span class="viz-tag">aiva.listen()</span>
+      </div>
+      <div class="card-body">
+        <p class="cat">AI &amp; IoT</p>
+        <h3>AIVA Smart Voice Assistant</h3>
+        <p data-i18n="p3_desc">Perangkat berbasis ESP32 yang menggabungkan input suara, speaker, Wi-Fi, relay untuk smart home, dan layanan AI di cloud.</p>
+        <ul class="tags"><li>ESP32</li><li>Voice</li><li>Smart home</li><li>Cloud AI</li></ul>
+      </div>
+    </article>
+
+    <article class="card tilt">
+      <div class="viz viz-web">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span>samlegalprima</span></div>
+          <div class="code" id="webCode"></div>
+        </div>
+        <span class="viz-tag">vercel deploy --prod</span>
+      </div>
+      <div class="card-body">
+        <p class="cat">Web Development &amp; Deployment</p>
+        <h3>SAM Legal Prima</h3>
+        <p data-i18n="p4_desc">Website company profile multi-halaman dengan UI responsif, dibangun dengan HTML, CSS, dan JavaScript, lalu di-deploy lewat GitHub dan Vercel dengan domain sendiri.</p>
+        <ul class="tags"><li>HTML/CSS/JS</li><li>GitHub</li><li>Vercel</li><li>Responsive</li></ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="edu_h">Pendidikan</h2>
+    <p class="sub" data-i18n="edu_sub">Tempat aku belajar membangun AI.</p>
+  </div>
+  <div class="edu">
+    <div class="edu-photo">
+      <img src="assets/campus.jpg" alt="Ramadhan di depan Gedung Andi Hakim Nasoetion, IPB University" loading="lazy">
+      <div class="edu-cap"><b>Gedung Andi Hakim Nasoetion</b><span>IPB University, Bogor</span></div>
+    </div>
+    <div class="timeline">
+      <div class="node">
+        <div class="dot"></div>
+        <div class="node-body">
+          <h3>IPB University</h3>
+          <p class="degree" data-i18n="edu_deg">Kecerdasan Buatan (Artificial Intelligence)</p>
+          <p class="where" data-i18n="edu_school">Sekolah Sains Data, Matematika dan Ilmu Komputer</p>
+          <p class="now"><span class="pulse"></span><span data-i18n="edu_now">Mahasiswa aktif</span></p>
+        </div>
+      </div>
+      <div class="node next">
+        <div class="dot"></div>
+        <div class="node-body">
+          <h3 data-i18n="next_h">Sedang kukerjakan</h3>
+          <p data-i18n="next_p">Memperdalam machine learning dan deployment AI, sambil terus membangun proyek robotika, IoT, dan web.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMINAL -->
+<section id="terminal" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="term_h">Coba terminalku</h2>
+    <p class="sub" data-i18n="term_sub">Ketik <code>help</code> lalu tekan Enter.</p>
+  </div>
+  <div class="term" id="term">
+    <div class="term-bar"><i></i><i></i><i></i><span>ramadhan@ipb: ~</span></div>
+    <div class="term-body" id="termBody" aria-live="polite"></div>
+    <form class="term-in" id="termForm" autocomplete="off">
+      <label for="termInput" class="prompt">ramadhan@ipb:~$</label>
+      <input id="termInput" type="text" spellcheck="false" autocapitalize="off" aria-label="Perintah terminal">
+    </form>
+    <div class="term-quick" id="termQuick"></div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section id="company" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="co_h">Perusahaan teknologi yang sedang kurencanakan</h2>
+    <p class="sub" data-i18n="co_sub">Dari proyek kuliah menuju produk dan layanan nyata.</p>
+  </div>
+  <div class="company">
+    <div class="co-logo" aria-hidden="true">
+      <svg viewBox="0 0 240 240">
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38E1FF"/><stop offset="1" stop-color="#2F6BFF"/></linearGradient></defs>
+        <g class="co-spin"><polygon points="120,6 219,63 219,177 120,234 21,177 21,63" fill="none" stroke="#38E1FF" stroke-width="1" stroke-dasharray="3 9" opacity=".7"/></g>
+        <polygon points="120,22 206,71 206,169 120,218 34,169 34,71" fill="rgba(47,107,255,.08)" stroke="url(#cg)" stroke-width="3"/>
+        <g class="co-spin rev"><polygon points="120,44 187,82 187,158 120,196 53,158 53,82" fill="none" stroke="#2F6BFF" stroke-width="1.2" stroke-dasharray="30 14 4 14"/></g>
+        <path class="co-v" d="M82 88 L120 160 L158 88" fill="none" stroke="url(#cg)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M120 160 V196" stroke="#38E1FF" stroke-width="3" stroke-linecap="round"/>
+        <circle class="co-n" cx="82" cy="88" r="6" fill="#38E1FF"/><circle class="co-n" cx="158" cy="88" r="6" fill="#FFB84D"/><circle class="co-n" cx="120" cy="196" r="6" fill="#38E1FF"/>
+      </svg>
+    </div>
+    <div class="co-text">
+      <p class="co-status"><span class="pulse amber"></span><span data-i18n="co_status">Tahap perencanaan</span></p>
+      <h3 class="co-name">PT Vigaro Atmajaya</h3>
+      <p data-i18n="co_p1">PT Vigaro Atmajaya adalah rencana perusahaan teknologi yang ingin kubangun. Tujuannya mengubah pengalaman di proyek AI, robotika, IoT, dan web menjadi produk dan layanan yang berguna bagi bisnis dan masyarakat.</p>
+      <p data-i18n="co_p2">Saat ini perusahaan ini masih dalam tahap perencanaan. Semua yang kubangun di bagian Proyek menjadi fondasinya.</p>
+      <p class="founder"><span data-i18n="co_founder">Pendiri</span>: Ramadhan Tri Atmojo</p>
+    </div>
+  </div>
+
+  <div class="co-focus">
+    <article class="fc"><h3 data-i18n="f1_h">Solusi AI &amp; Data</h3><p data-i18n="f1_p">Sistem prediksi dan analisis data untuk kebutuhan nyata, seperti yang dibangun di Lacta-Predict.</p></article>
+    <article class="fc"><h3 data-i18n="f2_h">Robotika &amp; IoT</h3><p data-i18n="f2_p">Perangkat pintar, robot, dan smart home berbasis ESP32 dan layanan cloud.</p></article>
+    <article class="fc"><h3 data-i18n="f3_h">Web &amp; Software</h3><p data-i18n="f3_p">Website dan aplikasi yang dibangun, di-deploy, dan dirawat sampai benar-benar online.</p></article>
+  </div>
+
+  <h3 class="rm-title" data-i18n="rm_h">Rencana tahapan</h3>
+  <ol class="roadmap">
+    <li class="rm-step now"><b data-i18n="rm1">Riset &amp; konsep</b><span data-i18n="rm1s">Sedang berjalan</span></li>
+    <li class="rm-step"><b data-i18n="rm2">Prototipe produk</b><span data-i18n="rm2s">Berikutnya</span></li>
+    <li class="rm-step"><b data-i18n="rm3">Legalitas &amp; pendirian</b><span data-i18n="rm3s">Direncanakan</span></li>
+    <li class="rm-step"><b data-i18n="rm4">Peluncuran</b><span data-i18n="rm4s">Direncanakan</span></li>
+  </ol>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec page contact">
+  <div class="contact-box">
+    <h2 data-i18n="contact_h">Mari bikin sesuatu bareng.</h2>
+    <p data-i18n="contact_p">Terbuka untuk kolaborasi proyek, lomba, magang, dan diskusi seputar AI, robotika, dan web.</p>
+    <div class="contact-links" id="contactLinks"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span>© <span id="year"></span> Ramadhan Tri Atmojo</span>
+  <span class="foot-r" data-i18n="foot">Dibangun dengan HTML, CSS, dan JavaScript</span>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
