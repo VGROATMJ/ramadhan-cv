@@ -21,7 +21,9 @@
   </div>
 </div>
 
-<div id="wipe" aria-hidden="true"><span id="wipeText"></span></div>
+<canvas id="tiles" aria-hidden="true"></canvas>
+<canvas id="matrix" aria-hidden="true"></canvas>
+<div id="ring" aria-hidden="true"></div>
 <canvas id="net" aria-hidden="true"></canvas>
 <div class="grid-bg" aria-hidden="true"></div>
 <div class="glow" id="glow" aria-hidden="true"></div>
@@ -36,11 +38,13 @@
     <a href="#skills" data-i18n="nav_skills">Skill</a>
     <a href="#projects" data-i18n="nav_projects">Proyek</a>
     <a href="#company" data-i18n="nav_company">Perusahaan</a>
+    <a href="#lab" data-i18n="nav_lab">Lab</a>
     <a href="#education" data-i18n="nav_edu">Pendidikan</a>
     <a href="#terminal" data-i18n="nav_term">Terminal</a>
     <a href="#contact" data-i18n="nav_contact">Kontak</a>
   </nav>
   <div class="nav-right">
+    <button class="pal-btn" id="palBtn" aria-label="Command palette"><kbd>Ctrl</kbd><kbd>K</kbd></button>
     <button class="lang" id="lang" aria-label="Ganti bahasa"><span class="on">ID</span><span>EN</span></button>
     <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
   </div>
@@ -73,6 +77,7 @@
 
   <div class="hero-photo">
     <div class="hud" id="hud">
+      <canvas id="sphere" aria-hidden="true"></canvas>
       <svg class="ring r1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="none" stroke-dasharray="2 10"/></svg>
       <svg class="ring r2" viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke-dasharray="40 18 6 18"/></svg>
       <div class="frame">
@@ -229,6 +234,44 @@
   </div>
 </section>
 
+<!-- LAB -->
+<section id="lab" class="sec page">
+  <div class="sec-head">
+    <h2 class="split" data-i18n="lab_h">Lab interaktif</h2>
+    <p class="sub" data-i18n="lab_sub">Dua demo nyata yang berjalan langsung di browsermu.</p>
+  </div>
+  <div class="lab">
+    <article class="lab-card">
+      <header>
+        <h3 data-i18n="mec_h">Simulator Mecanum Drive</h3>
+        <p data-i18n="mec_p">Kendalikan robot dengan W A S D atau tombol panah, putar dengan Q dan E. Kecepatan empat roda dihitung dengan kinematika mecanum yang asli. Diam sebentar dan robot jalan sendiri.</p>
+      </header>
+      <canvas id="mecCv" width="640" height="400" aria-label="Simulator robot mecanum"></canvas>
+      <div class="wheels" id="wheelBars"></div>
+      <div class="pad" id="mecPad">
+        <button data-k="q" aria-label="Putar kiri">⟲</button><button data-k="w" aria-label="Maju">▲</button><button data-k="e" aria-label="Putar kanan">⟳</button>
+        <button data-k="a" aria-label="Geser kiri">◀</button><button data-k="s" aria-label="Mundur">▼</button><button data-k="d" aria-label="Geser kanan">▶</button>
+      </div>
+    </article>
+    <article class="lab-card">
+      <header>
+        <h3 data-i18n="nn_h">Playground Jaringan Saraf</h3>
+        <p data-i18n="nn_p">Jaringan saraf kecil (7-8-8-1) yang benar-benar dilatih di browsermu saat ini. Lihat batas keputusannya berubah seiring epoch.</p>
+      </header>
+      <canvas id="nnCv" width="440" height="440" aria-label="Visualisasi jaringan saraf"></canvas>
+      <div class="nn-ctl">
+        <button class="mini" id="nnToggle" data-i18n="nn_pause">Jeda</button>
+        <button class="mini" id="nnReset" data-i18n="nn_reset">Reset</button>
+        <span class="sep"></span>
+        <button class="mini ds on" data-ds="spiral" data-i18n="ds_spiral">Spiral</button>
+        <button class="mini ds" data-ds="circle" data-i18n="ds_circle">Lingkaran</button>
+        <button class="mini ds" data-ds="xor">XOR</button>
+      </div>
+      <div class="nn-stats"><span>epoch <b id="nnEp">0</b></span><span>loss <b id="nnLoss">–</b></span><span>acc <b id="nnAcc">–</b></span></div>
+    </article>
+  </div>
+</section>
+
 <!-- EDUCATION -->
 <section id="education" class="sec page">
   <div class="sec-head">
@@ -336,7 +379,18 @@
   <span class="foot-r" data-i18n="foot">Dibangun dengan HTML, CSS, dan JavaScript</span>
 </footer>
 
+<div id="palette" hidden>
+  <div class="pal-box" role="dialog" aria-modal="true" aria-label="Command palette">
+    <input id="palIn" type="text" autocomplete="off" spellcheck="false">
+    <ul id="palList" role="listbox"></ul>
+    <div class="pal-foot"><span>↑ ↓</span> navigasi · <span>Enter</span> buka · <span>Esc</span> tutup · <span>1–9</span> loncat halaman</div>
+  </div>
+</div>
+<div class="hud-status" aria-hidden="true"><span class="blink"></span> <span id="hudPage">home</span> <i>|</i> <span id="hudClock">00:00:00</span> <i>|</i> <span id="hudFps">60</span> fps</div>
+
 <script src="js/config.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/lab.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
