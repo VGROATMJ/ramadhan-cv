@@ -11,6 +11,11 @@ const CFG = window.CONFIG || {};
 const I18N = {
   id: {
     nav_about:'Tentang', nav_skills:'Skill', nav_projects:'Proyek', nav_company:'Perusahaan', nav_edu:'Pendidikan', nav_term:'Terminal', nav_contact:'Kontak',
+    nav_home:'Beranda', nav_lab:'Lab', pal_ph:'Ketik untuk mencari halaman...', pal_lang:'Ganti bahasa (ID / EN)', pal_matrix:'Mode Matrix (on/off)',
+    lab_h:'Lab interaktif', lab_sub:'Dua demo nyata yang berjalan langsung di browsermu.',
+    mec_h:'Simulator Mecanum Drive', mec_p:'Kendalikan robot dengan W A S D atau tombol panah, putar dengan Q dan E. Kecepatan empat roda dihitung dengan kinematika mecanum yang asli. Diam sebentar dan robot jalan sendiri.',
+    nn_h:'Playground Jaringan Saraf', nn_p:'Jaringan saraf kecil (7-8-8-1) yang benar-benar dilatih di browsermu saat ini. Lihat batas keputusannya berubah seiring epoch.',
+    nn_pause:'Jeda', nn_train:'Latih', nn_reset:'Reset', ds_spiral:'Spiral', ds_circle:'Lingkaran',
     vent:'Pendiri PT Vigaro Atmajaya (dalam perencanaan)',
     co_h:'Perusahaan teknologi yang sedang kurencanakan', co_sub:'Dari proyek kuliah menuju produk dan layanan nyata.', co_status:'Tahap perencanaan',
     co_p1:'PT Vigaro Atmajaya adalah rencana perusahaan teknologi yang ingin kubangun. Tujuannya mengubah pengalaman di proyek AI, robotika, IoT, dan web menjadi produk dan layanan yang berguna bagi bisnis dan masyarakat.',
@@ -46,6 +51,11 @@ const I18N = {
   },
   en: {
     nav_about:'About', nav_skills:'Skills', nav_projects:'Projects', nav_company:'Company', nav_edu:'Education', nav_term:'Terminal', nav_contact:'Contact',
+    nav_home:'Home', nav_lab:'Lab', pal_ph:'Type to find a page...', pal_lang:'Switch language (ID / EN)', pal_matrix:'Matrix mode (on/off)',
+    lab_h:'Interactive lab', lab_sub:'Two real demos running right in your browser.',
+    mec_h:'Mecanum Drive Simulator', mec_p:'Drive the robot with W A S D or the arrow keys, rotate with Q and E. The four wheel speeds use real mecanum kinematics. Stay idle and the robot drives itself.',
+    nn_h:'Neural Network Playground', nn_p:'A small neural network (7-8-8-1) that is genuinely being trained in your browser right now. Watch its decision boundary change over epochs.',
+    nn_pause:'Pause', nn_train:'Train', nn_reset:'Reset', ds_spiral:'Spiral', ds_circle:'Circle',
     vent:'Founder of PT Vigaro Atmajaya (in planning)',
     co_h:'The tech company I’m planning', co_sub:'From student projects to real products and services.', co_status:'Planning stage',
     co_p1:'PT Vigaro Atmajaya is a technology company I plan to build. The goal is to turn my experience in AI, robotics, IoT, and web projects into products and services that are useful to businesses and communities.',
@@ -266,6 +276,7 @@ function show(id) {
   window.scrollTo(0, 0);
   $$('.links a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
   $('#links').classList.remove('open');
+  if (window.FX && FX.onPage) FX.onPage(id);
 }
 function route(id, animate = true) {
   if (!pageIds.includes(id)) id = 'home';
@@ -273,20 +284,9 @@ function route(id, animate = true) {
   if (id === current) return;
   if (reduce || !animate) { show(id); return; }
   busy = true;
-  const w = $('#wipe'); $('#wipeText').textContent = '> load("' + id + '")';
-  w.style.display = 'grid';
-  const ease = 'cubic-bezier(.7,0,.3,1)';
-  const a = w.animate([{ transform: 'translateX(-101%)' }, { transform: 'translateX(0)' }], { duration: 300, easing: ease, fill: 'forwards' });
-  a.onfinish = () => {
-    show(id);
-    setTimeout(() => {
-      const b = w.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(101%)' }], { duration: 380, easing: ease, fill: 'forwards' });
-      b.onfinish = () => {
-        w.style.display = 'none'; a.cancel(); b.cancel(); busy = false;
-        if (pending) { const n = pending; pending = null; route(n); }
-      };
-    }, 120);
-  };
+  const done = () => { busy = false; if (pending) { const n = pending; pending = null; route(n); } };
+  if (window.FX && FX.transition) FX.transition(() => show(id), id).then(done);
+  else { show(id); done(); }
 }
 function go(id) { if (location.hash === '#' + id) route(id); else location.hash = id; }
 document.addEventListener('click', e => {
@@ -412,7 +412,7 @@ function renderContact() {
    ============================================================ */
 (function terminal() {
   const body = $('#termBody'), form = $('#termForm'), inp = $('#termInput'), quick = $('#termQuick');
-  const cmds = ['help', 'about', 'skills', 'projects', 'company', 'education', 'contact', 'clear'];
+  const cmds = ['help', 'neofetch', 'about', 'skills', 'projects', 'company', 'lab', 'matrix', 'contact', 'clear'];
   quick.innerHTML = cmds.map(c => `<button type="button" data-c="${c}">${c}</button>`).join('');
   const print = (html, cls = 'out') => { const d = document.createElement('div'); d.className = cls; d.innerHTML = html; body.appendChild(d); body.scrollTop = body.scrollHeight; };
   const run = raw => {
@@ -420,10 +420,20 @@ function renderContact() {
     if (!c) return;
     print(`<b>ramadhan@ipb:~$</b> ${c.replace(/</g, '&lt;')}`, 'cmd');
     switch (c) {
-      case 'help': print(`${t('t_help')}:\n  <span class="hl">about</span>      \n  <span class="hl">skills</span>\n  <span class="hl">projects</span>\n  <span class="hl">company</span>\n  <span class="hl">education</span>\n  <span class="hl">contact</span>\n  <span class="hl">clear</span>`); break;
+      case 'help': print(`${t('t_help')}:\n  <span class="hl">neofetch</span>\n  <span class="hl">about</span>\n  <span class="hl">skills</span>\n  <span class="hl">projects</span>\n  <span class="hl">company</span>\n  <span class="hl">lab</span>\n  <span class="hl">matrix</span>\n  <span class="hl">education</span>\n  <span class="hl">contact</span>\n  <span class="hl">clear</span>`); break;
       case 'about': case 'whoami': print(t('t_about')); break;
       case 'skills': print('AI/Data   : Machine Learning, EDA, Feature Engineering, Model Evaluation\nRobotics  : ESP32, Arduino, Motor control, Servo, Mecanum\nIoT       : Wi-Fi, Relay, Voice input, Cloud AI\nWeb       : HTML, CSS, JavaScript, GitHub, Vercel'); break;
       case 'projects': case 'ls': print('<span class="hl">Lacta-Predict</span>       AI & ML\n<span class="hl">ESP32 Mecanum Robot</span> Robotics\n<span class="hl">AIVA Voice Assistant</span> AI & IoT\n<span class="hl">SAM Legal Prima</span>    Web'); break;
+      case 'neofetch': print(`<span class="hl">    ⬡⬡⬡⬡⬡</span>     <span class="hl">ramadhan</span>@<span class="hl">ipb</span>
+<span class="hl">   ⬡ \\   / ⬡</span>    ──────────────
+<span class="hl">   ⬡  \\ /  ⬡</span>    <b>OS</b>       portfolio.os
+<span class="hl">    ⬡  V  ⬡</span>     <b>Campus</b>   IPB University
+<span class="hl">     ⬡⬡⬡⬡</span>      <b>Major</b>    Artificial Intelligence
+                 <b>Stack</b>    ML · ESP32 · IoT · Web
+                 <b>Venture</b>  PT Vigaro Atmajaya (planning)
+                 <b>Mode</b>     learn → build → ship`); break;
+      case 'lab': print('opening /lab ...'); setTimeout(() => go('lab'), 600); break;
+      case 'matrix': print(FX.matrix() ? 'matrix: ON (Esc / ketik matrix lagi untuk mati)' : 'matrix: OFF'); break;
       case 'company': print(t('t_company')); break;
       case 'education': print('IPB University\n' + (lang === 'id' ? 'Kecerdasan Buatan — Sekolah Sains Data, Matematika dan Ilmu Komputer' : 'Artificial Intelligence — School of Data Science, Mathematics and Computer Science')); break;
       case 'contact': {
@@ -461,13 +471,14 @@ function renderContact() {
 })();
 
 (function reveal() {
-  $$('.card,.sg,.node-body,.about-text,.about-photo,.edu-photo,.term,.contact-box,.co-logo,.co-text,.fc,.rm-step').forEach(el => el.classList.add('rv'));
+  $$('.card,.sg,.node-body,.about-text,.about-photo,.edu-photo,.term,.contact-box,.lab-card,.co-logo,.co-text,.fc,.rm-step').forEach(el => el.classList.add('rv'));
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { const t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(() => t.classList.remove('rv'), 1000); }
   }), { threshold: .15 });
   $$('.rv,.split').forEach(el => io.observe(el));
 })();
 
+window.APP = { go, t, toggleLang: () => $('#lang').click(), current: () => current };
 $('#year').textContent = new Date().getFullYear();
 applyLang();
 boot();
