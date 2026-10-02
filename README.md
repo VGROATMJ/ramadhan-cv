@@ -15,3 +15,5 @@ Edit `js/config.js` (email, GitHub, LinkedIn, Instagram, link CV PDF).
 
 ## Perusahaan
 Teks PT Vigaro Atmajaya ada di `index.html` (bagian COMPANY) dan `js/main.js` (kunci co_, f1_, rm_). Saat ini tertulis "tahap perencanaan".
+
+Deploy update
